@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Зв'яжіться з нами — Rhine Media</title>
+  <meta name="description" content="Get in touch with Rhine Media — performance media buying agency. Start a cooperation or ask any question." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ---- Contact-page-specific extras ---- */
+    .success-msg {
+      display: none;
+      background: rgba(60, 180, 100, 0.1);
+      border: 1px solid rgba(60, 180, 100, 0.3);
+      border-radius: var(--r-m);
+      padding: 18px 22px;
+      color: #6ee79a;
+      font-size: 0.93rem;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .success-msg.show { display: block; }
+
+    /* FAQ accordion */
+    .faq-section { padding: 90px 0; background: var(--bg-0); }
+    .faq-section .sec-sub { margin: 0 auto 48px; }
+
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--b0);
+      padding: 6px 0;
+    }
+
+    .faq-q {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 0;
+      font-family: var(--f-head);
+      font-size: 0.97rem;
+      font-weight: 600;
+      color: var(--t1);
+      text-align: left;
+      cursor: pointer;
+      transition: color var(--tf);
+    }
+    .faq-q:hover { color: var(--gold-lt); }
+
+    .faq-arrow {
+      width: 22px; height: 22px;
+      background: var(--bg-card);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: var(--t2);
+      flex-shrink: 0;
+      transition: transform var(--tf), background var(--tf);
+    }
+    .faq-item.open .faq-arrow {
+      transform: rotate(180deg);
+      background: var(--gold-dim);
+      color: var(--gold);
+    }
+
+    .faq-a {
+      display: none;
+      padding: 0 0 20px;
+      font-size: 0.9rem;
+      color: var(--t2);
+      line-height: 1.75;
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* Map placeholder with grid aesthetic */
+    .map-stub-grid {
+      background: var(--bg-card);
+      border: 1px solid var(--b0);
+      border-radius: var(--r-l);
+      overflow: hidden;
+      margin-top: 36px;
+      position: relative;
+      height: 220px;
+    }
+    .map-stub-grid-inner {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(62,114,236,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(62,114,236,0.05) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .map-stub-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: var(--t3);
+      font-size: 0.83rem;
+      z-index: 1;
+    }
+    .map-stub-pin {
+      width: 32px; height: 32px;
+      background: var(--gold-dim);
+      border: 1px solid var(--border-g);
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg);
+      margin-bottom: 4px;
+    }
+    .map-stub-pin::after {
+      content: '';
+      width: 12px; height: 12px;
+      background: var(--gold);
+      border-radius: 50%;
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .map-stub-pin { position: relative; }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================
+       NAVIGATION
+  ========================================================= -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="logo">
+          <div class="logo-mark">RM</div>
+          <div class="logo-name">Rhine <span>Media</span></div>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html#verticals">Вертикалі</a></li>
+          <li><a href="index.html#traffic">Джерела трафіку</a></li>
+          <li><a href="index.html#partners">Партнери</a></li>
+          <li><a href="index.html#why-us">Чому ми?</a></li>
+          <li><a href="contact.html" style="color:var(--gold-lt);">Контакти</a></li>
+        </ul>
+        <div class="nav-right">
+          <a href="index.html" class="btn btn-ghost">Повернутися на головну</a>
+          <a href="#contact-form" class="btn btn-primary">Надіслати повідомлення</a>
+          <button class="ham" id="ham" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mob-menu" id="mobMenu">
+    <span class="mob-close" id="mobClose">✕</span>
+    <a href="index.html#verticals">Вертикалі</a>
+    <a href="index.html#traffic">Джерела трафіку</a>
+    <a href="index.html#partners">Партнери</a>
+    <a href="index.html#why-us">Чому ми?</a>
+    <a href="contact.html">Контакти</a>
+    <a href="#contact-form" class="btn btn-primary" style="margin-top:14px;">Надіслати повідомлення</a>
+  </div>
+
+
+  <!-- =========================================================
+       PAGE HERO
+  ========================================================= -->
+  <header class="page-hero">
+    <div class="container">
+      <div class="eyebrow" data-a="up">Зв'яжіться з нами</div>
+      <h1 data-a="up" data-d="1">Подзвоніть<span class="text-gold">Rhine Media</span></h1>
+      <p data-a="up" data-d="2">
+        Чи готові почати? Чи є питання? Наша команда відповість протягом 24 годин.
+      </p>
+    </div>
+  </header>
+
+
+  <!-- =========================================================
+       CONTACT MAIN SECTION
+  ========================================================= -->
+  <main class="page-body" id="contact-form">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- LEFT: Info -->
+        <div class="contact-intro" data-a="left">
+          <h3>Давайте<br><span class="text-gold">вместе создадим что-то прибыльное</span></h3>
+          <p>
+            Незалежно від того, чи є ви рекламодавцем, який прагне масштабувати свої пропозиції, партнерською мережею, яка шукає надійну команду із закупівель, чи брендом, готовим до глобального розширення, ми хочемо почути від вас.
+          </p>
+
+          <div class="cinfo-list">
+
+            <div class="cinfo-item">
+              <div class="cinfo-ico">✈</div>
+              <div class="cinfo-text">
+                <h4>Telegram</h4>
+                <a href="https://t.me/rhinemedia" target="_blank" rel="noopener">@rhinemedia</a>
+              </div>
+            </div>
+
+            <div class="cinfo-item">
+              <div class="cinfo-ico">✉️</div>
+              <div class="cinfo-text">
+                <h4>Електронна пошта</h4>
+                <a href="/cdn-cgi/l/email-protection#c8a0ada4a4a788baa0a1a6ade5a5adaca1a9e6aba7a5"><span class="__cf_email__" data-cfemail="b2dad7dededdf2c0dadbdcd79fdfd7d6dbd39cd1dddf">[email&#160;protected]</span></a>
+              </div>
+            </div>
+
+            <div class="cinfo-item">
+              <div class="cinfo-ico">💼</div>
+              <div class="cinfo-text">
+                <h4>Робочий час</h4>
+                <p>Пн – Пт &nbsp;·&nbsp; 09:00 – 20:00</p>
+              </div>
+            </div>
+
+            <div class="cinfo-item">
+              <div class="cinfo-ico">⚡</div>
+              <div class="cinfo-text">
+                <h4>Час відгуку</h4>
+                <p>Зазвичай протягом 2-4 робочих годин.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Preferred channels -->
+          <p style="font-size:0.83rem; color:var(--t3); margin-bottom:8px; font-weight:600; letter-spacing:0.05em; text-transform:uppercase;">
+            Також доступно на
+          </p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a href="#" class="btn btn-ghost" style="padding:10px 18px; font-size:0.8rem;">
+              Skype
+            </a>
+            <a href="#" class="btn btn-ghost" style="padding:10px 18px; font-size:0.8rem;">
+              WhatsApp
+            </a>
+            <a href="#" class="btn btn-ghost" style="padding:10px 18px; font-size:0.8rem;">
+              LinkedIn
+            </a>
+          </div>
+
+          <!-- Map placeholder -->
+          <div class="map-stub-grid">
+            <div class="map-stub-grid-inner"></div>
+            <div class="map-stub-label">
+              <div class="map-stub-pin"></div>
+              <span>Rhine Media · Глобальні операції</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: Form -->
+        <div class="form-card" data-a="right">
+          <h3>Надішліть нам повідомлення</h3>
+
+          <form id="contactForm" novalidate>
+
+            <div class="form-row-2">
+              <div class="fg">
+                <label for="fname">Ім'я *</label>
+                <input type="text" id="fname" name="fname" placeholder="John" required />
+              </div>
+              <div class="fg">
+                <label for="lname">Прізвище *</label>
+                <input type="text" id="lname" name="lname" placeholder="Smith" required />
+              </div>
+            </div>
+
+            <div class="fg">
+              <label for="email">Адреса електронної пошти *</label>
+              <input type="email" id="email" name="email" placeholder="john@company.com" required />
+            </div>
+
+            <div class="fg">
+              <label for="company">Компанія / Бренд</label>
+              <input type="text" id="company" name="company" placeholder="Your company name" />
+            </div>
+
+            <div class="fg">
+              <label for="telegram">Нік у Telegram/Skype</label>
+              <input type="text" id="telegram" name="telegram" placeholder="@yourusername" />
+            </div>
+
+            <div class="fg">
+              <label for="vertical">Вертикаль / Ніша *</label>
+              <select id="vertical" name="vertical" required>
+                <option value="" disabled selected>Оберіть вертикаль...</option>
+                <option value="dating">Сайти знайомств</option>
+                <option value="nutra">Сайти про харчування / Здоров'я &amp; Красу</option>
+                <option value="gambling">Азартні ігри / Казино</option>
+                <option value="igaming">iGaming / Ставки</option>
+                <option value="sweepstakes">Лотерея</option>
+                <option value="adult">Для дорослих</option>
+                <option value="crypto">Криптовалютні пропозиції</option>
+                <option value="mainstream">Основний потік / Інше</option>
+              </select>
+            </div>
+
+            <div class="fg">
+              <label for="budget">Щомісячний бюджет (USD)</label>
+              <select id="budget" name="budget">
+                <option value="" disabled selected>Оберіть бюджет...</option>
+                <option value="under5k">До $5,000</option>
+                <option value="5k-20k">$5,000 – $20,000</option>
+                <option value="20k-50k">$20,000 – $50,000</option>
+                <option value="50k-100k">$50,000 – $100,000</option>
+                <option value="100k+">$100,000+</option>
+              </select>
+            </div>
+
+            <div class="fg">
+              <label for="message">Повідомлення *</label>
+              <textarea id="message" name="message" placeholder="Розкажіть нам про вашу пропозицію, цілі, географічні регіони та будь-які інші деталі, які допоможуть нам зрозуміти ваші потреби…" required></textarea>
+            </div>
+
+            <!-- Privacy consent -->
+            <div class="fg" style="display:flex; align-items:flex-start; gap:10px; margin-bottom:28px;">
+              <input type="checkbox" id="consent" name="consent" style="width:auto; margin-top:3px; flex-shrink:0; accent-color:var(--gold);" required />
+              <label for="consent" style="font-size:0.8rem; color:var(--t2); font-weight:400; line-height:1.6;">
+                Я згоден з
+                <a href="privacy-policy.html" style="color:var(--gold-lt); text-decoration:none;">Политикой конфиденциальности</a>
+                і
+                <a href="terms.html" style="color:var(--gold-lt); text-decoration:none;">Условиями предоставления услуг</a>.
+                Я даю згоду на обробку моїх даних компанії Rhine Media для відповіді на цей запит.
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
+              Відправити повідомлення
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M1 7h12M7.5 1.5L13 7l-5.5 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+
+            <div class="success-msg" id="successMsg">
+              ✅ &nbsp;Ваше повідомлення надіслано! Ми зв'яжемося з вами протягом 2–4 робочих годин.
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+
+  <!-- =========================================================
+       FAQ SECTION
+  ========================================================= -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="sec-center" data-a="up">
+        <div class="eyebrow">Часто задаються питання</div>
+        <h2 class="sec-title">Часті <span class="text-gold">запитання</span></h2>
+        <p class="sec-sub">
+          Все, що вам потрібно знати перед початком співпраці з Rhine Media.
+        </p>
+      </div>
+
+      <div class="faq-list">
+
+        <div class="faq-item" data-a="up" data-d="1">
+          <button class="faq-q" aria-expanded="false">
+            В яких галузях спеціалізується компанія Rhine Media?
+            <span class="faq-arrow">▾</span>
+          </button>
+          <div class="faq-a">
+           Ми спеціалізуємося на таких напрямках, як знайомства, харчування, азартні ігри, онлайн-ігри, лотереї, контент для дорослих, криптовалютні пропозиції та популярні вертикалі. Наша команда має глибокі знання в кожній з цих ніш і підтримує прямі відносини з провідними видавцями та партнерськими мережами у всіх основних регіонах.
+          </div>
+        </div>
+
+        <div class="faq-item" data-a="up" data-d="2">
+          <button class="faq-q" aria-expanded="false">
+            Який мінімальний щомісячний бюджет необхідний для співпраці з вами?
+            <span class="faq-arrow">▾</span>
+          </button>
+          <div class="faq-a">
+            Як правило, ми працюємо з партнерами, що інвестують мінімум 5000 доларів на місяць у медіа-бюджет. Для певних отраслей або ексклюзивних виробів можуть застосовуватися більш високі мінімальні суми. 
+            Зв’яжіться з нами, щоб обсудити вашу конкретну ситуацію — ми гибки у відношенні відповідних партнерів.
+          </div>
+        </div>
+
+        <div class="faq-item" data-a="up" data-d="3">
+          <button class="faq-q" aria-expanded="false">
+            Як швидко ви можете запустити кампанію?
+            <span class="faq-arrow">▾</span>
+          </button>
+          <div class="faq-a">
+            Як тільки у нас будуть всі необхідні матеріали (креативи, цілі сторінки, опис пропозиції, налаштування відбору), ми, як правило, можемо запустити кампанію протягом 24–48 годин. 
+            Наш оптимізований процес впровадження гарантує, що вам ніколи не доведеться довго чекати початку трафіку.
+          </div>
+        </div>
+
+        <div class="faq-item" data-a="up" data-d="4">
+          <button class="faq-q" aria-expanded="false">
+            Ви працюєте на умовах сертифікованого бухгалтера (CPA), сертифікованого спеціаліста з розвитку бізнесу (CPL) або на основі розподілу доходу?
+            <span class="faq-arrow">▾</span>
+          </button>
+          <div class="faq-a">
+            Ми працюємо з різними моделями ценоутворення, включаючи управління витратами (фіксована плата + бонус за результати), CPA, CPL, розподіл доходу та гібридні структури. 
+            Підходяща модель залежить від вашої галузі, обсягу і типу пропозиції. Ми рекомендуємо найбільш підходящий підхід під час нашої початкової консультації.
+          </div>
+        </div>
+
+        <div class="faq-item" data-a="up" data-d="5">
+          <button class="faq-q" aria-expanded="false">
+            Які географічні регіони ви охоплюєте?
+            <span class="faq-arrow">▾</span>
+          </button>
+          <div class="faq-a">
+            В даний час у нас діють рекламні кампанії більш ніж в 60 країнах світу, включаючи всі провідні ринки (США, Великобританія, Німеччина, Австралія, Канада, Франція), Латинську Америку (Бразилія, Мексика, Колумбія), Азіатсько-Тихоокеанський регіон (Індія, Філіппіни, Японія, Таїланд, Японія) і країни Ближнього Сходу і Північної Африки (Австралія, Саудовська Аравія, Єгипет). Якщо вам потрібна реклама в конкретному регіоні, повідомте нам, і ми підтвердимо наші можливості.
+          </div>
+        </div>
+
+        <div class="faq-item" data-a="up" data-d="6">
+          <button class="faq-q" aria-expanded="false">
+            Які звіти та механізми керування ви надаєте?
+            <span class="faq-arrow">▾</span>
+          </button>
+          <div class="faq-a">
+            Всі клієнти отримують доступ до панелей моніторингу продуктивності в режимі реального часу з повною прозорістю за показами, кліками, конверсіями, витратами та доходами. 
+            Ми інтегруємося з усіма основними платформами відстеження, включаючи Voluum, Binom, RedTrack, а також використовуємо налаштування S2S-постбека. 
+            Щотижневі зведені звіти надаються у стандартному порядку.
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-cols">
+        <div>
+          <a href="index.html" class="logo">
+            <div class="logo-mark">RM</div>
+            <div class="logo-name">Rhine <span>Media</span></div>
+          </a>
+          <p class="fb-desc">Провідне агентство із закупівлі медіареклами. Створено для масштабування. Оптимізовано для рентабельності інвестицій.</p>
+          <div class="footer-social">
+            <a href="#" class="soc-btn" aria-label="Telegram">✈</a>
+            <a href="#" class="soc-btn" aria-label="LinkedIn">in</a>
+            <a href="#" class="soc-btn" aria-label="X">𝕏</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="fc-head">Послуги</h4>
+          <ul class="fc-links">
+            <li><a href="index.html#verticals">Вертикалі</a></li>
+            <li><a href="index.html#traffic">Джерела трафіку</a></li>
+            <li><a href="index.html#partners">Партнери</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="fc-head">Компанія</h4>
+          <ul class="fc-links">
+            <li><a href="index.html#why-us">Про нас</a></li>
+            <li><a href="contact.html">Контакт</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="fc-head">Юридичне</h4>
+          <ul class="fc-links">
+            <li><a href="terms.html">Умови надання послуг</a></li>
+            <li><a href="privacy-policy.html">Політика конфіденційності</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="copy">© 2026 Rhine Media. Усі права захищені. rhine-media.com</p>
+        <nav class="f-legal">
+          <a href="terms.html">Умови</a>
+          <a href="privacy-policy.html">Політика</a>
+          <a href="contact.html">Контакт</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- =========================================================
+       JAVASCRIPT
+  ========================================================= -->
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    /* ---- Navbar ---- */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 55);
+    }, { passive: true });
+
+    /* ---- Mobile menu ---- */
+    const ham     = document.getElementById('ham');
+    const mobMenu = document.getElementById('mobMenu');
+    const mobClose = document.getElementById('mobClose');
+    ham.addEventListener('click', () => { mobMenu.classList.add('open'); document.body.style.overflow = 'hidden'; });
+    const closeMenu = () => { mobMenu.classList.remove('open'); document.body.style.overflow = ''; };
+    mobClose.addEventListener('click', closeMenu);
+    mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+    /* ---- Scroll reveal ---- */
+    document.querySelectorAll('[data-a]').forEach(el => {
+      new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }).observe(el);
+    });
+
+    /* ---- Contact form submission (demo) ---- */
+    const form       = document.getElementById('contactForm');
+    const successMsg = document.getElementById('successMsg');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Basic validation
+      const required = form.querySelectorAll('[required]');
+      let valid = true;
+      required.forEach(field => {
+        if (!field.value.trim()) {
+          field.style.borderColor = '#e87060';
+          valid = false;
+        } else {
+          field.style.borderColor = '';
+        }
+      });
+
+      if (!valid) return;
+
+      // Show success (replace with real API call as needed)
+      const submitBtn = form.querySelector('[type="submit"]');
+      submitBtn.textContent = 'Sending…';
+      submitBtn.disabled = true;
+
+      setTimeout(() => {
+        successMsg.classList.add('show');
+        submitBtn.style.display = 'none';
+        form.querySelectorAll('input, select, textarea').forEach(f => f.disabled = true);
+      }, 1200);
+    });
+
+    /* ---- FAQ accordion ---- */
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.querySelector('.faq-q').addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        // Close all
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        // Open clicked (if it was closed)
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"798bb26057674b49b1f9435dd6eb6a12","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
