@@ -1,7 +1,7 @@
 # Website Clone – Localized (EN → UA) & Responsive
 
-[![Live Demo](https://img.shields.io/badge/demo-live-success)](https://rhine-media.com/) 
-[![Status](https://img.shields.io/badge/status-completed-blue)](https://tyotasupra.neocities.org/)
+[![Live Demo](https://img.shields.io/badge/demo-live-success)]([https://rhine-media.com/](https://tyotasupra.neocities.org/)) 
+[![Status](https://img.shields.io/badge/status-completed-blue)]()
 
 ## 📋 Project Overview
 
