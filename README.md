@@ -1,6 +1,6 @@
 # Website Clone – Localized (EN → UA) & Responsive
 
-[![Live Demo](https://img.shields.io/badge/demo-live-success)]([https://rhine-media.com/](https://tyotasupra.neocities.org/)) 
+[![Live Demo](https://img.shields.io/badge/demo-live-success)](https://tyotasupra.neocities.org/) 
 [![Status](https://img.shields.io/badge/status-completed-blue)]()
 
 ## 📋 Project Overview
@@ -37,7 +37,7 @@ The result is a pixel-perfect clone that feels native to Ukrainian speakers with
 
 To guarantee stability for every user, the website underwent strict performance validation under diverse network conditions:
 
-- **✅ High-bandwidth (Fiber/Wi-Fi)** – Instantaneous loading and smooth animations.
+- **✅ High-bandwidth (Wi-Fi)** – Instantaneous loading and smooth animations.
 - **✅ Low-bandwidth (3G)** – Successfully tested under constrained conditions to ensure the site remains accessible and functional even with poor connectivity.
 - **✅ Mobile Cellular Data (4G/5G)** – Verified on real mobile devices over cellular networks to confirm optimal performance on the go.
 
@@ -48,8 +48,7 @@ The site consistently renders quickly and maintains all interactive functionalit
 - **HTML5** – Semantic, clean markup.
 - **CSS3** – Flexbox, Grid, and Media Queries for precise responsive styling.
 - **JavaScript (Vanilla)** – Handles animations and interactive elements.
-- **Free Hosting Service** – Deployed without recurring fees (e.g., GitHub Pages, Netlify, or Vercel).
-   git clone https://github.com/yourusername/your-repo-name.git
-   ```
+- **Free Hosting Service** – Deployed without recurring fees.
+
 2. Open `index.html` directly in any modern web browser (no build tools required).
 
