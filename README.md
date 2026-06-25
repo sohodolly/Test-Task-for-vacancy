@@ -1,9 +1,3 @@
-# Test-Task-for-vacancy
-Understood. Since your original TOR (technical assignment) was very specific—**copy a site from a link, preserve its styles, translate English to Ukrainian, and host it for free**—here is a new, precise English README that directly reflects *that* exact brief and your implementation results.
-
----
-
-```markdown
 # Website Clone – Localized (EN → UA) & Responsive
 
 [![Live Demo](https://img.shields.io/badge/demo-live-success)](https://rhine-media.com/) 
@@ -55,16 +49,6 @@ The site consistently renders quickly and maintains all interactive functionalit
 - **CSS3** – Flexbox, Grid, and Media Queries for precise responsive styling.
 - **JavaScript (Vanilla)** – Handles animations and interactive elements.
 - **Free Hosting Service** – Deployed without recurring fees (e.g., GitHub Pages, Netlify, or Vercel).
-
-## 🚀 Live Demo
-
-You can view the final deployed version here:  
-🔗 **[Insert Live Demo Link]**  
-
-## 🧑‍💻 Run Locally
-
-1. Clone the repository:
-   ```bash
    git clone https://github.com/yourusername/your-repo-name.git
    ```
 2. Open `index.html` directly in any modern web browser (no build tools required).
