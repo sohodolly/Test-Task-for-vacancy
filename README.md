@@ -2,6 +2,7 @@
 
 [![Live Demo](https://img.shields.io/badge/demo-live-success)](https://tyotasupra.neocities.org/) 
 [![Status](https://img.shields.io/badge/status-completed-blue)]()
+![Screenshot of the interface](screenshot.jpg)  
 
 ## 📋 Project Overview
 
